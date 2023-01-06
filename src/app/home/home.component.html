@@ -1,0 +1,38 @@
+<div class="container">
+    <!-- <img class="back-image" src="https://img.freepik.com/free-photo/top-view-indian-food-with-copy-space_23-2148747659.jpg?w=1380&t=st=1672434935~exp=1672435535~hmac=524e74364e59e0d213cc4c44188a634eb3f07d021a661b0e24a4ae7c049b40d0"> -->
+    <app-search></app-search>
+<app-tags></app-tags>   
+<app-not-found
+[visible]="!foods || !foods.length"
+resetLinkText="Reset Search">
+</app-not-found> 
+<ul>
+    <li *ngFor="let food of foods">
+        <a routerLink="/food/{{food.id}}">
+            <img src="{{food.imageUrl}}" alt="food images">
+            <div class="content">
+                <div class="name">
+                    {{food.name}}
+                </div>
+                <span class="favourite {{food.favourite?'':'not'}}" >❤️</span>
+                <br>
+                <div class="product-item-footer">
+                    <div class="origins">
+                        <div class="price-tag">
+                            {{food.price|currency}}
+                        </div>
+                        <span *ngFor="let origin of food.origins">
+                            {{origin}}
+                        </span>
+                    </div>
+                    <div class="cook-time">
+                        <span>⏱️</span>
+                        {{food.cookTime}} mins
+                    </div>
+                </div>
+                <div class="star"><ngx-star-rating [id]="'rating1'" [disabled]="true"></ngx-star-rating></div>
+            </div>
+        </a>
+    </li>
+</ul>
+</div>
